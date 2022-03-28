@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ea710c68-603e-4788-a3b0-6bb73f8e2f1a": {
+      "ProjectGuid": "ea710c68-603e-4788-a3b0-6bb73f8e2f1a",
+      "DisplayName": "P1268连续子段的最大和",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

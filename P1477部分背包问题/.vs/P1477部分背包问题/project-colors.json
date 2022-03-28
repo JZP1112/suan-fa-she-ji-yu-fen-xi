@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "23e0ba47-be94-4fc6-bcc9-5232da5a1f35": {
+      "ProjectGuid": "23e0ba47-be94-4fc6-bcc9-5232da5a1f35",
+      "DisplayName": "P1477部分背包问题",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "5948bc80-b413-4067-9ade-eab4deb2c1de": {
+      "ProjectGuid": "5948bc80-b413-4067-9ade-eab4deb2c1de",
+      "DisplayName": "P1220皇后摆放",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
