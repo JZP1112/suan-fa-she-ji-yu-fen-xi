@@ -1,30 +1,55 @@
 #include<iostream>
 using namespace std;
-int arr[9][9];
-int num = 0;
-void dfs(int row, int col)
+int arr[10][10];
+int ans;
+bool judge(int x, int y)
 {
-	if (row == 8)
-	{
-		num++;
-		return;
-	}
 	int i, j;
 	for (j = 1; j <= 8; j++)
 	{
-		if (arr[row][j] == 1)
-		{
-			dfs(row + 1, col);
-		}
+		if (arr[j][y])			return false;
 	}
 	for (i = 1; i <= 8; i++)
 	{
-		if (arr[i][col] == 1)
+		for (j = 1; j <= 8; j++)
 		{
-			dfs(row, col + 1);
+			if (abs(x - i) == abs(y - j) && arr[i][j] == 1)		return false;
 		}
 	}
-
+	return true;
+}
+void dfs(int v)
+{
+	if (v > 8)
+	{
+		ans++;
+		return;
+	}
+	int i, j, flag = 1;
+	for (i = 1; i <= 8; i++)
+	{
+		if (arr[v][i])
+		{
+			flag = 0;
+			break;
+		}
+	}
+	if (flag)
+	{
+		for (i = 1; i <= 8; i++)
+		{
+			if (judge(v, i))
+			{
+				arr[v][i] = 1;
+				dfs(v + 1);
+				arr[v][i] = 0;
+			}
+		}
+	}
+	else
+	{
+		dfs(v + 1);
+	}
 }
 int main()
 {
@@ -36,4 +61,7 @@ int main()
 			cin >> arr[i][j];
 		}
 	}
+	dfs(1);
+	cout << ans << endl;
+	return 0;
 }

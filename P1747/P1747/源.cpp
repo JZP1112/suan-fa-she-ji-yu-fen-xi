@@ -1,65 +1,37 @@
 #include<iostream>
-#include<algorithm>
 using namespace std;
 int arr[100010];
 int main()
 {
-	int n, m;
+	int n;
 	cin >> n;
 	int i;
-	for (i = 0; i < n; i++)
+	for (i = 1; i <= n; i++)
 	{
 		cin >> arr[i];
 	}
+	int m;
 	cin >> m;
-	int x;
-	int flag;
-	for (i = 0; i < m; i++)
+	while (m--)
 	{
-		flag = 0;
-		cin >> x;
-		int mid;
-		int left = 0, right = n - 1;
-		while (left < right)
+		int flag = 0;
+		int k;
+		cin >> k;
+		int left = 1, right = n;
+		while (left + 1 < right)
 		{
-			mid = (left + right) / 2;
-			if (x == arr[mid])
+			int mid = (left + right) / 2;
+			if (arr[mid] == k)
 			{
 				flag = 1;
 				break;
 			}
-			else if (x > arr[mid])
-			{
-				left = mid + 1;
-			}
-			else	right = mid - 1;
-			if (flag == 1)		break;
+			if (arr[mid] < k)		left = mid;
+			else							right = mid;
 		}
-		if (flag == 1)	cout << arr[mid] << endl;
-		else
-		{
-			int ans;
-			if (mid - 1 >= 0 && mid + 1 <= n - 1)
-			{
-				if (abs(arr[mid] - x) > abs(arr[mid + 1] - x) && abs(arr[mid + 1] - x) > abs(arr[mid - 1] - x))		cout << arr[mid - 1] << endl;
-				else if (abs(arr[mid] - x) < abs(arr[mid + 1] - x) && abs(arr[mid + 1] - x) < abs(arr[mid - 1] - x))	cout << arr[mid] << endl;
-				else		cout << arr[mid + 1] << endl;
-			}
-			else if (mid - 1 < 0)
-			{
-				if (abs(arr[mid] - x) > abs(arr[mid + 1] - x))
-				{
-					cout << arr[mid + 1] << endl;
-				}
-				else cout << arr[mid] << endl;
-			}
-			else
-			{
-				if (abs(arr[mid] - x) > abs(arr[mid - 1] - x))		cout << arr[mid - 1] << endl;
-				else								cout << arr[mid] << endl;
-			}
-		}
-
+		if (flag)			cout << k << endl;
+		else if (abs(arr[left] - k) <= abs(arr[left + 1] - k))		cout << arr[left] << endl;
+		else cout << arr[left + 1] << endl;
 	}
 	return 0;
 }

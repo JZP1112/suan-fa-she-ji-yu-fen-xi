@@ -1,34 +1,40 @@
 #include<iostream>
 using namespace std;
-int arr[2510][2510];
+int dis[10010][10010];
+#define inf 999999
 int n, m, s, t;
-int ans=9999999;
-void dfs(int v, int path)
-{
-	if (v == n)		return;
-	if (v == t)
-	{
-		ans = min(ans, path);
-		return;
-	}
-	for (int i = 1; i <= n; i++)
-	{
-		if (arr[v][i] != 0)
-		{
-			dfs(i, path + arr[v][i]);
-		}
-	}
-}
 int main()
 {
 	cin >> n >> m >> s >> t;
-	int u, v, w,i;
-	for (i = 0; i < m; i++)
+	int i, j, k,x;
+	for (i = 1; i <= n; i++)
 	{
-		cin >> u >> v >> w;
-		arr[u][v] = w;
+		for (j = 1; j <= n; j++)
+		{
+			dis[i][j] = inf;
+		}
 	}
-	dfs(s, 0);
-	cout << ans << endl;
+	for (i = 1; i <= n; i++)
+	{
+		dis[i][i] = 0;
+	}
+	for (k = 1; k <= m; k++)
+	{
+		cin >> i >> j >> x;
+		dis[i][j] = x;
+		dis[j][i] = x;
+	}
+	for (k = 1; k <= n; k++)
+	{
+		for (i = 1; i <= n; i++)
+		{
+			for (j = 1; j <= n; j++)
+			{
+				if (dis[i][k]!=inf && dis[k][j] != inf && dis[i][j] > dis[i][k] + dis[k][j])
+					dis[i][j] = dis[i][k] + dis[k][j];
+			}
+		}
+	}
+	cout << dis[s][t] << endl;
 	return 0;
 }
