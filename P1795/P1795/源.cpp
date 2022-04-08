@@ -1,54 +1,48 @@
 #include<iostream>
 using namespace std;
-int graph[1001][1001];
-int col[1001];
-int n, k, m;
+int k, v, m;
 int ans;
-bool judge(int v)
+int col[1010];
+int graph[1010][1010];
+bool judge(int p, int color)
 {
-	int i;
-	for (i = 1; i <= n; i++)
-	{
-		if (graph[v][i]==1 && col[v] == col[i])
-		{
-			return false;
-		}
-	}
-	return true;
+    int i, flag = 1;
+    for (i = 1; i <= v; i++)
+    {
+        if (graph[p][i] == 1 && color == col[i])     return false;
+    }
+    return true;
 }
-void dfs(int v)
+void dfs(int vec)
 {
-	int i;
-	if (v > n)
-	{
-		ans++;
-		return;
-	}
-	else
-	{
-		for (i = 1; i <= m; i++)
-		{
-			col[v] = i;
-			if (judge(v))
-			{
-				dfs(v + 1);
-			}
-			col[v] = 0;
-		}
-	}
+    if (vec > v)
+    {
+        ans++;
+        return;
+    }
+    int i;
+    for (i = 1; i <= m; i++)
+    {
+        if (judge(vec, i))
+        {
+            col[vec] = i;
+            dfs(vec + 1);
+            col[vec] = 0;
+        }
+    }
 }
 int main()
 {
-	cin >> n >> k >> m;
-	int i;
-	for (i = 0; i < k; i++)
-	{
-		int x, y;
-		cin >> x >> y;
-		graph[x][y] = 1;
-		graph[y][x] = 1;
-	}
-	dfs(1);
-	cout << ans << endl;
-	return 0;
+    cin >> v >> k >> m;
+    int i;
+    for (i = 1; i <= k; i++)
+    {
+        int x, y;
+        cin >> x >> y;
+        graph[x][y] = 1;
+        graph[y][x] = 1;
+    }
+    dfs(1);
+    cout << ans << endl;
+    return 0;
 }
